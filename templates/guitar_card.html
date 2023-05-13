@@ -1,0 +1,25 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body border border-warning rounded">
+    <h5 class="card-title">{{ obj.model }}</h5>
+    <p class="card-text">{{ obj.manufacturer }}</p>
+    <button class="btn btn-danger btn-sm" onclick="delete_guitar({{obj.id}})">Delete</button>
+    <button class="btn btn btn-sm" onclick="rent_guitar({{obj.id}})">Rent</button>
+  </div>
+  <div id="result" class="text-success"></div>
+</div>
+{% block scripts %}
+<script type="text/javascript">
+    function delete_guitar(id){
+        fetch('/guitars/delete/'+id,{
+            method:'DELETE',})
+        .then(response => response.json())
+        .then(data => document.getElementById('result').innerHTML = data.message);
+    }
+    function rent_guitar(id){
+        fetch('/guitars/'+id,{
+            method:'PATCH',})
+        .then(response => response.json())
+        .then(data => document.getElementById('result').innerHTML = data.message)
+    }
+</script>
+{% endblock %}

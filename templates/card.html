@@ -1,0 +1,26 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body border border-warning rounded">
+    <h5 class="card-title">{{ obj.username }}</h5>
+    <p class="card-text">{{ obj.email }}</p>
+    <a href="/email/{{obj.id}}/" class="btn btn-primary">Change email</a>
+    <button class="btn btn-danger btn-sm" onclick="delete_user({{obj.id}})">Delete</button>
+  </div>
+</div>
+{% block scripts %}
+    <script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#datatable").DataTable()
+	});
+	</script>
+    <script type="text/javascript">
+    function delete_user(id){
+        window.location.reload()
+        fetch('/users/delete/'+id,{
+            method:'DELETE',})
+        .then(response => response.json())
+        .then(document.getElementById('result').innerHTML = "Refreshing...")
+        .then(data => document.getElementById('result').innerHTML = data.detail);
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,19 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body border border-warning rounded">
+    <h5 class="card-title">{{ obj.model }}</h5>
+    <p class="card-text">{{ obj.manufacturer }}</p>
+    <button class="btn btn-danger btn-sm" onclick="return_guitar({{obj.id}});">Return</button>
+  </div>
+  <div id="result" class="text-success"></div>
+</div>
+{% block scripts %}
+<script type="text/javascript">
+    function return_guitar(id){
+        fetch('/leases/'+id,{
+            method:'PATCH',})
+        .then(response => response.json())
+        .then(data => document.getElementById('result').innerHTML = data.message);
+       // window.location.reload()
+    }
+</script>
+{% endblock %}

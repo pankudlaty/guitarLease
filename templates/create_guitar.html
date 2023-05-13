@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	<title>Guitar add</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h1 class="text-center">Add Guitar</h1>
+  			{% for error in errors %}
+				<div class="alert alert-danger" role="alert">
+					{{ error }}
+				</div>
+			{% endfor %}
+		<form method="POST">
+            <div class="mb-3">
+    			<label for="manufacturer" class="form-label">Manufacturer</label>
+    			<input type="manufacturer" class="form-control" name="manufacturer" placeholder="enter manufacturer">
+  			</div>
+  			<div class="mb-3">
+    			<label for="model" class="form-label">Model</label>
+    			<input type="model" class="form-control" name="model" placeholder="enter model">
+  			</div>
+  			<button type="submit" class="btn btn-primary">Create</button>
+		</form>
+	<div>
+{% endblock %}

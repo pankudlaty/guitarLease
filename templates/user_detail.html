@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+	<title>User Details</title>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h1>User Detail</h1>
+		<table class="table">
+		  <tbody>
+   			 <tr>
+     			 <th scope="row">Username</th>
+     			 <td>{{username}}</td>
+    		</tr>
+    		<tr>
+      			<th scope="row">Email</th>
+      			<td>{{email}}</td>
+    		</tr>
+  		</tbody>
+	  </table>
+	</div>
+{% endblock %}
